@@ -1,5 +1,7 @@
 with Ada.Finalization;
 with Ada.Strings.Unbounded;
+with Ada.Numerics.Big_Numbers.Big_Integers;
+with Ada.Numerics.Big_Numbers.Big_Reals;
 
 package Unicfg
 with Preelaborate
@@ -7,20 +9,26 @@ is
 
    pragma Warnings (Off);
    use type Ada.Strings.Unbounded.Unbounded_String;
+   use type Ada.Numerics.Big_Numbers.Big_Integers.Big_Integer;
+   use type Ada.Numerics.Big_Numbers.Big_Reals.Big_Real;
    pragma Warnings (On);
 
    subtype Unbounded_UTF8_String is Ada.Strings.Unbounded.Unbounded_String;
+   subtype Big_Integer is Ada.Numerics.Big_Numbers.Big_Integers.Big_Integer;
+   subtype Big_Real is Ada.Numerics.Big_Numbers.Big_Reals.Big_Real;
 
    type Any_Node_Kind is
      (Map,
       Vector,
-      Value);
+      String_Value,
+      Int_Value,
+      Real_Value);
 
    subtype Composite_Node_Kind is
       Any_Node_Kind range Map .. Vector;
 
    subtype Atom_Node_Kind is
-      Any_Node_Kind range Value ..  Value;
+      Any_Node_Kind range String_Value .. Real_Value;
 
    type Node is new Ada.Finalization.Controlled with private;
    No_Value : constant Node;
@@ -56,13 +64,23 @@ is
    --------------------
 
    function As_String (This : Node) return String
-      with Pre => This.Kind = Value;
+      with Pre => This.Kind = String_Value;
    --  Return the string that Value represents
 
    function As_Unbounded_String
      (This : Node) return Unbounded_UTF8_String
-      with Pre => This.Kind = Value;
+      with Pre => This.Kind = String_Value;
    --  Likewise, but return an unbounded string
+
+   function As_Int
+     (This : Node) return Big_Integer
+      with Pre => This.Kind = Int_Value;
+   --  Return the integer that Value represents
+
+   function As_Real
+     (This : Node) return Big_Real
+      with Pre => This.Kind = Real_Value;
+   --  Return the real that Value represents
 
    ---------------------
    -- Table accessors --
@@ -135,14 +153,24 @@ is
    -------------------
 
    function Create_String (Str : String) return Node
-      with Post => Create_String'Result.Kind = Value
+      with Post => Create_String'Result.Kind = String_Value
                    and then Create_String'Result.As_String = Str;
    --  Create a TOML string value. Value must be a valid UTF-8 string.
 
    function Create_String (Str : Unbounded_UTF8_String) return Node
-      with Post => Create_String'Result.Kind = Value
+      with Post => Create_String'Result.Kind = String_Value
                    and then Create_String'Result.As_Unbounded_String = Str;
    --  Create a TOML string value
+
+   function Create_Int (V : Big_Integer) return Node
+      with Post => Create_Int'Result.Kind = Int_Value
+                   and then Create_Int'Result.As_Int = V;
+   --  Create an integer value
+
+   function Create_Real (V : Big_Real) return Node
+      with Post => Create_Real'Result.Kind = Real_Value
+                   and then Create_Real'Result.As_Real = V;
+   --  Create an real value
 
    ---------------------
    -- Table modifiers --

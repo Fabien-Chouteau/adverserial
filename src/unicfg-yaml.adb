@@ -106,8 +106,17 @@ package body Unicfg.YAML is
                   end;
                end loop;
 
-            when Value =>
+            when String_Value =>
                Put (Format_String (N.As_Unbounded_String));
+
+            when Int_Value =>
+               Put
+                 (Ada.Numerics.Big_Numbers.Big_Integers.To_String (N.As_Int));
+
+            when Real_Value =>
+               Put
+                 (Ada.Numerics.Big_Numbers.Big_Reals.To_String (N.As_Real));
+
          end case;
       end Dump_Rec;
 
@@ -148,8 +157,17 @@ package body Unicfg.YAML is
                end loop;
                Put ("]");
 
-            when Value =>
+            when String_Value =>
                Put (Format_String (N.As_Unbounded_String));
+
+            when Int_Value =>
+               Put
+                 (Ada.Numerics.Big_Numbers.Big_Integers.To_String (N.As_Int));
+
+            when Real_Value =>
+               Put
+                 (Ada.Numerics.Big_Numbers.Big_Reals.To_String (N.As_Real));
+
          end case;
       end Dump_Inline_Rec;
 

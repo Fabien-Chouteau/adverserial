@@ -111,8 +111,16 @@ package body Unicfg.JSON is
                Indent_Up;
                Put ("]");
 
-            when Value =>
+            when String_Value =>
                Put (Format_String (N.As_Unbounded_String));
+
+            when Int_Value =>
+               Put
+                 (Ada.Numerics.Big_Numbers.Big_Integers.To_String (N.As_Int));
+
+            when Real_Value =>
+               Put
+                 (Ada.Numerics.Big_Numbers.Big_Reals.To_String (N.As_Real));
 
          end case;
       end Dump_Rec;

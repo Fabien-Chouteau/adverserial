@@ -83,8 +83,8 @@ begin
 
    Vect := Create_Vector;
    Vect.Append (Create_String ("a"));
-   Vect.Append (Create_String ("b"));
-   Vect.Append (Create_String ("c"));
+   Vect.Append (Create_Int (42));
+   Vect.Append (Create_Real (42.0));
 
    Vect_Of_Vects := Create_Vector;
    Vect_Of_Vects.Append (Vect.Clone);

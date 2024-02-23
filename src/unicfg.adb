@@ -37,8 +37,14 @@ package body Unicfg is
             Array_Implicitly_Created : Boolean;
             --  Same as Table_Implicitly_Created
 
-         when Value =>
+         when String_Value =>
             String_Value : Unbounded_String;
+
+         when Int_Value =>
+            Int_Value : Big_Integer;
+
+         when Real_Value =>
+            Real_Value : Big_Real;
 
       end case;
    end record;
@@ -123,8 +129,14 @@ package body Unicfg is
                end if;
             end loop;
 
-         when Value =>
+         when String_Value =>
             return Left.Value.String_Value = Right.Value.String_Value;
+
+         when Int_Value =>
+            return Left.Value.Int_Value = Right.Value.Int_Value;
+
+         when Real_Value =>
+            return Left.Value.Real_Value = Right.Value.Real_Value;
 
       end case;
 
@@ -151,8 +163,15 @@ package body Unicfg is
                Result.Append (This.Item (I));
             end loop;
 
-         when Value =>
+         when String_Value =>
             Result := Create_String (This.Value.String_Value);
+
+         when Int_Value =>
+            Result := Create_Int (This.Value.Int_Value);
+
+         when Real_Value =>
+            Result := Create_Real (This.Value.Real_Value);
+
       end case;
 
       return Result;
@@ -176,6 +195,24 @@ package body Unicfg is
    begin
       return This.Value.String_Value;
    end As_Unbounded_String;
+
+   ---------------
+   -- As_String --
+   ---------------
+
+   function As_Int (This : Node) return Big_Integer is
+   begin
+      return This.Value.Int_Value;
+   end As_Int;
+
+   -------------
+   -- As_Real --
+   -------------
+
+   function As_Real (This : Node) return Big_Real is
+   begin
+      return This.Value.Real_Value;
+   end As_Real;
 
    ---------
    -- Has --
@@ -306,10 +343,34 @@ package body Unicfg is
    function Create_String (Str : Unbounded_UTF8_String) return Node is
    begin
       return Create_Node (new Node_Record'
-                            (Kind         => Value,
+                            (Kind         => String_Value,
                              Ref_Count    => 1,
                              String_Value => Str));
    end Create_String;
+
+   ----------------
+   -- Create_Int --
+   ----------------
+
+   function Create_Int (V : Big_Integer) return Node is
+   begin
+      return Create_Node (new Node_Record'
+                            (Kind      => Int_Value,
+                             Ref_Count => 1,
+                             Int_Value => V));
+   end Create_Int;
+
+   -----------------
+   -- Create_Real --
+   -----------------
+
+   function Create_Real (V : Big_Real) return Node is
+   begin
+      return Create_Node (new Node_Record'
+                            (Kind      => Real_Value,
+                             Ref_Count => 1,
+                             Real_Value => V));
+   end Create_Real;
 
    ------------------
    -- Create_Table --
