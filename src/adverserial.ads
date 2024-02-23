@@ -3,7 +3,7 @@ with Ada.Strings.Unbounded;
 with Ada.Numerics.Big_Numbers.Big_Integers;
 with Ada.Numerics.Big_Numbers.Big_Reals;
 
-package Unicfg
+package Adverserial
 with Preelaborate
 is
 
@@ -273,4 +273,4 @@ private
 
    function Indent_String (Count : Natural) return Unbounded_UTF8_String;
 
-end Unicfg;
+end Adverserial;

@@ -1,5 +1,5 @@
 
-package body Unicfg.JSON is
+package body Adverserial.JSON is
 
    ------------------
    -- Generic_Dump --
@@ -129,4 +129,4 @@ package body Unicfg.JSON is
       Dump_Rec (This);
    end Generic_Dump;
 
-end Unicfg.JSON;
+end Adverserial.JSON;

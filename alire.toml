@@ -1,5 +1,5 @@
-name = "unicfg"
-description = "Shiny new project"
+name = "adverserial"
+description = "Ada Versatile Serialization"
 version = "0.1.0-dev"
 
 authors = ["Fabien Chouteau"]

@@ -2,18 +2,13 @@ name = "tests"
 description = "Shiny new project"
 version = "0.1.0-dev"
 
-authors = ["Fabien Chouteau"]
-maintainers = ["Fabien Chouteau <fabien.chouteau@gmail.com>"]
-maintainers-logins = ["Fabien-Chouteau"]
-
 executables = ["tests"]
 
 [[depends-on]]
-unicfg = "*"
+adverserial = "*"
 
 [[pins]]
-unicfg = { path = ".." }
-
+adverserial = { path = ".." }
 
 [build-profiles]
-unicfg = "validation"
+adverserial = "validation"

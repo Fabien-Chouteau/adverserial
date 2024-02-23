@@ -1,4 +1,4 @@
-package body Unicfg.YAML is
+package body Adverserial.YAML is
 
    ------------------
    -- Generic_Dump --
@@ -179,4 +179,4 @@ package body Unicfg.YAML is
       end if;
    end Generic_Dump;
 
-end Unicfg.YAML;
+end Adverserial.YAML;

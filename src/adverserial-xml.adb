@@ -1,5 +1,5 @@
 
-package body Unicfg.XML is
+package body Adverserial.XML is
 
    ------------------
    -- Element_Name --
@@ -209,4 +209,4 @@ package body Unicfg.XML is
       Dump_Rec (This);
    end Generic_Dump;
 
-end Unicfg.XML;
+end Adverserial.XML;

@@ -1,4 +1,4 @@
-package Unicfg.JSON
+package Adverserial.TOML
 with Preelaborate
 is
 
@@ -10,7 +10,7 @@ is
       --  Write all Bytes in Stream
 
    procedure Generic_Dump  (This        :        Node;
-                            Stream      : in out Output_Stream;
-                            Indent_Step :        Natural := 1);
+                            Stream      : in out Output_Stream)
+     with Pre => This.Kind = Map;
 
-end Unicfg.JSON;
+end Adverserial.TOML;

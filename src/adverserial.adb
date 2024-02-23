@@ -6,7 +6,7 @@ with Ada.Unchecked_Deallocation;
 
 with Interfaces;
 
-package body Unicfg is
+package body Adverserial is
 
    use Ada.Strings.Unbounded;
 
@@ -667,4 +667,4 @@ package body Unicfg is
       return To_Unbounded_String (String'(1 .. Count => ' '));
    end Indent_String;
 
-end Unicfg;
+end Adverserial;

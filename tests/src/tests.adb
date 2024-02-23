@@ -1,8 +1,8 @@
-with Unicfg; use Unicfg;
-with Unicfg.YAML;
-with Unicfg.JSON;
-with Unicfg.TOML;
-with Unicfg.XML;
+with Adverserial; use Adverserial;
+with Adverserial.YAML;
+with Adverserial.JSON;
+with Adverserial.TOML;
+with Adverserial.XML;
 
 with Ada.Text_IO;
 
@@ -14,22 +14,22 @@ procedure Tests is
    end Put;
 
    procedure YAML_TIO_Dump
-   is new Unicfg.YAML.Generic_Dump
+   is new Adverserial.YAML.Generic_Dump
      (Output_Stream => Ada.Text_IO.File_Type,
       Put => Put);
 
    procedure JSON_TIO_Dump
-   is new Unicfg.JSON.Generic_Dump
+   is new Adverserial.JSON.Generic_Dump
      (Output_Stream => Ada.Text_IO.File_Type,
       Put => Put);
 
    procedure TOML_TIO_Dump
-   is new Unicfg.TOML.Generic_Dump
+   is new Adverserial.TOML.Generic_Dump
      (Output_Stream => Ada.Text_IO.File_Type,
       Put => Put);
 
    procedure XML_TIO_Dump
-   is new Unicfg.XML.Generic_Dump
+   is new Adverserial.XML.Generic_Dump
      (Output_Stream => Ada.Text_IO.File_Type,
       Put => Put);
 

@@ -1,4 +1,4 @@
-package Unicfg.TOML
+package Adverserial.YAML
 with Preelaborate
 is
 
@@ -10,7 +10,7 @@ is
       --  Write all Bytes in Stream
 
    procedure Generic_Dump  (This        :        Node;
-                            Stream      : in out Output_Stream)
-     with Pre => This.Kind = Map;
+                            Stream      : in out Output_Stream;
+                            Indent_Step :        Natural := 2);
 
-end Unicfg.TOML;
+end Adverserial.YAML;

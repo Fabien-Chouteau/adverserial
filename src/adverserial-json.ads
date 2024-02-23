@@ -1,6 +1,7 @@
-package Unicfg.XML
+package Adverserial.JSON
 with Preelaborate
 is
+
    generic
       type Output_Stream (<>) is limited private;
       --  Stream of bytes
@@ -12,4 +13,4 @@ is
                             Stream      : in out Output_Stream;
                             Indent_Step :        Natural := 1);
 
-end Unicfg.XML;
+end Adverserial.JSON;

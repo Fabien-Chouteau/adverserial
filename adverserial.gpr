@@ -1,21 +1,21 @@
-with "config/unicfg_config.gpr";
-project Unicfg is
+with "config/adverserial_config.gpr";
+project Adverserial is
 
-   for Library_Name use "Unicfg";
-   for Library_Version use Project'Library_Name & ".so." & Unicfg_Config.Crate_Version;
+   for Library_Name use "Adverserial";
+   for Library_Version use Project'Library_Name & ".so." & Adverserial_Config.Crate_Version;
 
    for Source_Dirs use ("src/", "config/");
-   for Object_Dir use "obj/" & Unicfg_Config.Build_Profile;
+   for Object_Dir use "obj/" & Adverserial_Config.Build_Profile;
    for Create_Missing_Dirs use "True";
    for Library_Dir use "lib";
 
    type Library_Type_Type is ("relocatable", "static", "static-pic");
    Library_Type : Library_Type_Type :=
-     external ("UNICFG_LIBRARY_TYPE", external ("LIBRARY_TYPE", "static"));
+     external ("ADVERSERIAL_LIBRARY_TYPE", external ("LIBRARY_TYPE", "static"));
    for Library_Kind use Library_Type;
 
    package Compiler is
-      for Default_Switches ("Ada") use Unicfg_Config.Ada_Compiler_Switches;
+      for Default_Switches ("Ada") use Adverserial_Config.Ada_Compiler_Switches;
    end Compiler;
 
    package Binder is
@@ -26,4 +26,4 @@ project Unicfg is
       for Artifacts (".") use ("share");
    end Install;
 
-end Unicfg;
+end Adverserial;
